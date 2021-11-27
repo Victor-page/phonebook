@@ -4,6 +4,7 @@ import { generate } from 'shortid';
 
 import Form from 'components/Form';
 import Filter from 'components/Filter';
+import ContactList from 'components/ContactList';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,21 +16,23 @@ const initialContacts = [
 class App extends Component {
   state = { contacts: initialContacts, filter: '' };
 
+  findConcurrence = (enteredName, enteredNumber) =>
+    this.state.contacts.find(
+      ({ name, number }) => name === enteredName || number === enteredNumber
+    );
+
   addContact = (name, number) => {
+    const concurrence = this.findConcurrence(name, number);
+    if (concurrence) {
+      alert(concurrence.name + ' is already in contacts.');
+      return;
+    }
+
     const contact = { id: generate(), name, number };
 
     this.setState((prevState) => ({
       contacts: [contact, ...prevState.contacts],
     }));
-  };
-
-  createContact = ({ id, name, number }) => {
-    return (
-      <li key={id}>
-        <p>{name}</p>
-        <p>{number}</p>
-      </li>
-    );
   };
 
   changeFilter = ({ currentTarget: { value: filterValue } }) => {
@@ -53,10 +56,11 @@ class App extends Component {
       <div>
         <h2>Phonebook</h2>
         <Form onSubmit={this.addContact} />
+
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
 
-        <ul>{visibleContacts.map(this.createContact)}</ul>
+        <ContactList contacts={visibleContacts} />
       </div>
     );
   }
