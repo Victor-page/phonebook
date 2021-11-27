@@ -32,15 +32,31 @@ class App extends Component {
     );
   };
 
+  changeFilter = ({ currentTarget: { value: filterValue } }) => {
+    this.setState({ filter: filterValue });
+  };
+
+  getVisibleContacts = () => {
+    const { filter, contacts } = this.state;
+
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
   render() {
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       <div>
         <h2>Phonebook</h2>
         <Form onSubmit={this.addContact} />
         <h2>Contacts</h2>
-        <h3>Find contacts by name</h3>
-        <Filter />
-        <ul>{this.state.contacts.map(this.createContact)}</ul>
+        <Filter value={this.state.filter} onChange={this.changeFilter} />
+
+        <ul>{visibleContacts.map(this.createContact)}</ul>
       </div>
     );
   }
