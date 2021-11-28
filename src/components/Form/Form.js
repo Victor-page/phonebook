@@ -1,11 +1,14 @@
 import { Component } from 'react';
 
 import { generate } from 'shortid';
+import PropTypes from 'prop-types';
 
 import classes from './Form.module.css';
 
 class Form extends Component {
   state = { name: '', number: '' };
+
+  static propTypes = { onSubmit: PropTypes.func.isRequired };
 
   nameInputId = generate();
   numberInputId = generate();
@@ -31,7 +34,7 @@ class Form extends Component {
 
   render() {
     const { name, number } = this.state;
-    
+
     return (
       <form onSubmit={this.handleSubmit} className={classes.form}>
         <label htmlFor={this.nameInputId}>Name</label>
