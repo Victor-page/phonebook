@@ -16,6 +16,19 @@ const initialContacts = [
 class App extends Component {
   state = { contacts: initialContacts, filter: '' };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    contacts && this.setState({ contacts });
+  }
+
   findConcurrence = (enteredName, enteredNumber) =>
     this.state.contacts.find(
       ({ name, number }) => name === enteredName || number === enteredNumber
