@@ -5,17 +5,13 @@ import { generate } from 'shortid';
 class Filter extends Component {
   filterInputId = generate();
 
-
-
   render() {
+    const { value, onChange } = this.props;
+
     return (
       <>
         <label htmlFor={this.filterInputId}>Find contacts by name</label>
-        <input
-          value={this.props.value}
-          onChange={this.props.onChange}
-          id={this.filterInputId}
-        ></input>
+        <input value={value} onChange={onChange} id={this.filterInputId} />
       </>
     );
   }

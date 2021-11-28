@@ -30,3 +30,11 @@ h6 {
 p {
   margin-top: 0;
 }
+
+input {
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
