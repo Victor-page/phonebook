@@ -1,3 +1,9 @@
-export const myAction = { type: 'myAction', payload: 'super payload' };
+export const increment = (value) => ({
+  type: 'counter/Increment',
+  payload: value,
+});
 
-export const myAction2 = { type: 'myAction2', payload: 'super payload2' };
+export const decrement = (value) => ({
+  type: 'counter/Decrement',
+  payload: value,
+});

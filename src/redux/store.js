@@ -1,15 +1,24 @@
 import { createStore } from 'redux';
 
-const reducer = (
-  state = {
-    a: 5,
-  },
-  action
-) => {
-  console.log('reducer', action);
-  return state;
+const initialState = { counterValue: 0 };
+
+const reducer = (prevState = initialState, { type, payload }) => {
+  switch (type) {
+    case 'counter/Increment':
+      return {
+        counterValue: prevState.counterValue + payload,
+      };
+
+    case 'counter/Decrement':
+      return {
+        counterValue: prevState.counterValue - payload,
+      };
+
+    default:
+      return prevState;
+  }
 };
 
-const store = createStore(reducer, { a: 15 });
+const store = createStore(reducer);
 
 export default store;

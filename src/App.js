@@ -5,6 +5,7 @@ import filterCtx from 'context/filterContext';
 import Form from 'components/Form';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
+import Counter from 'components/Counter';
 
 const App = () => {
   const { contacts, addContact, deleteContact } = useContext(contactsCtx);
@@ -31,6 +32,8 @@ const App = () => {
         contacts={getVisibleContacts()}
         onDeleteContact={deleteContact}
       />
+      <hr />
+      <Counter />
     </div>
   );
 };

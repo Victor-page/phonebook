@@ -5,19 +5,15 @@ import App from './App';
 import ContactsContext from 'context/ContactsProvider';
 import FilterContext from 'context/FilterProvider';
 import store from 'redux/store';
-import { myAction, myAction2 } from 'redux/actions';
-
-console.log(store);
-console.log(store.getState());
-
-store.dispatch(myAction);
-store.dispatch(myAction2);
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <React.StrictMode>
     <ContactsContext>
       <FilterContext>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </FilterContext>
     </ContactsContext>
   </React.StrictMode>,
