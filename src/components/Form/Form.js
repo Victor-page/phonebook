@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import { connect } from 'react-redux';
+import contactsActions from 'redux/contacts/contacts-actions';
 import { generate } from 'shortid';
 import PropTypes from 'prop-types';
 
@@ -73,4 +74,8 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default Form;
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (name, value) => dispatch(contactsActions.addContact(name, value)),
+});
+
+export default connect(null, mapDispatchToProps)(Form);
