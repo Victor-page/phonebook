@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import contactsActions from 'redux/contacts/contacts-actions';
+import { addContact } from 'redux/contacts/contacts-actions';
 import { generate } from 'shortid';
 import PropTypes from 'prop-types';
 
 import classes from './Form.module.css';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -35,8 +35,24 @@ const Form = ({ onSubmit }) => {
     setNumber('');
   };
 
+  const findConcurrence = (enteredName, enteredNumber) =>
+    contacts.find(
+      ({ name, number }) => name === enteredName || number === enteredNumber
+    );
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (name.trim() === '' || number.trim() === '') {
+      alert('The fields are mandatory.');
+      return;
+    }
+
+    const concurrence = findConcurrence(name, number);
+    if (concurrence) {
+      alert(concurrence.name + ' is already in contacts.');
+      return;
+    }
+
     onSubmit(name, number);
     reset();
   };
@@ -74,8 +90,10 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({ contacts: state.contacts.items });
+
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (name, value) => dispatch(contactsActions.addContact(name, value)),
+  onSubmit: (name, value) => dispatch(addContact(name, value)),
 });
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

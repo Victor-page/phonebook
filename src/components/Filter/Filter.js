@@ -1,7 +1,7 @@
 import { generate } from 'shortid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import contactsActions from 'redux/contacts/contacts-actions';
+import { changeFilter } from 'redux/contacts/contacts-actions';
 
 const Filter = ({ value, onChange }) => {
   const filterInputId = generate();
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({ value: state.contacts.filter });
 
 const mapDispatchToProps = (dispatch) => ({
   onChange: ({ target: { value: filterValue } }) =>
-    dispatch(contactsActions.changeFilter(filterValue)),
+    dispatch(changeFilter(filterValue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

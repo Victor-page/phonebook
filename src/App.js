@@ -12,7 +12,7 @@ const App = () => (
     <Filter />
 
     <ContactList />
-    <hr />
+
     <Counter />
   </div>
 );
