@@ -1,29 +1,22 @@
 import { generate } from 'shortid';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from 'redux/contacts/contacts-actions';
+import { getFilter } from 'redux/contacts/contacts-selectors';
 
-const Filter = ({ value, onChange }) => {
+const Filter = () => {
+  const value = useSelector(getFilter);
+  const dispatch = useDispatch();
   const filterInputId = generate();
+
+  const changeHandler = ({ target: { value: filterValue } }) =>
+    dispatch(changeFilter(filterValue));
 
   return (
     <>
       <label htmlFor={filterInputId}>Find contacts by name</label>
-      <input value={value} onChange={onChange} id={filterInputId} />
+      <input value={value} onChange={changeHandler} id={filterInputId} />
     </>
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({ value: state.contacts.filter });
-
-const mapDispatchToProps = (dispatch) => ({
-  onChange: ({ target: { value: filterValue } }) =>
-    dispatch(changeFilter(filterValue)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

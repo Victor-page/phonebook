@@ -1,20 +1,13 @@
 import { combineReducers } from 'redux';
-import { INCREMENT, DECREMENT } from './counter-types';
+import { createReducer } from '@reduxjs/toolkit';
+import { increment, decrement } from './counter-actions';
 
-const valueReducer = (prevState = 0, { type, payload }) => {
-  switch (type) {
-    case INCREMENT:
-      return prevState + payload;
+const valueReducer = createReducer(0, {
+  [increment]: (prevState, { payload }) => prevState + payload,
+  [decrement]: (prevState, { payload }) => prevState - payload,
+});
 
-    case DECREMENT:
-      return prevState - payload;
-
-    default:
-      return prevState;
-  }
-};
-
-const stepReducer = (prevState = 15, action) => prevState;
+const stepReducer = createReducer(15, {});
 
 const counterReducer = combineReducers({
   value: valueReducer,
