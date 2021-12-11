@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts-actions';
+import { addContact } from 'redux/contacts/contacts-operations';
 import { generate } from 'shortid';
 import { getContacts } from 'redux/contacts/contacts-selectors';
 import classes from './Form.module.css';

@@ -6,16 +6,16 @@ import App from './App';
 // import FilterContext from 'context/FilterProvider';
 import store from 'redux/store';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+// import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <ContactsContext>
       <FilterContext> */}
-    <Provider store={store.store}>
-      <PersistGate loading={<p>Loading...</p>} persistor={store.persistor}>
-        <App />
-      </PersistGate>
+    <Provider store={store}>
+      {/* <PersistGate loading={<p>Loading...</p>} persistor={store.persistor}> */}
+      <App />
+      {/* </PersistGate> */}
     </Provider>
     {/* </FilterContext>
     </ContactsContext> */}
