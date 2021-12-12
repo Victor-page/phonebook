@@ -26,7 +26,7 @@ import {
 //   name: 'contacts',
 //   initialState: { items: [], filter: '', loading: false, error: null },
 //   extraReducers: {
-//     [fetchContacts.fullfilled]: (state, action) => ({
+//     [fetchContacts.fulfilled]: (state, action) => ({
 //       ...state,
 //       items: action.payload,
 //     }),
