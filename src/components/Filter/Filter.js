@@ -1,15 +1,14 @@
 import { generate } from 'shortid';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter } from 'redux/contacts/contacts-actions';
-import { getFilter } from 'redux/contacts/contacts-selectors';
+import { contactsSelectors, contactsActions } from 'redux/contacts';
 
 const Filter = () => {
-  const value = useSelector(getFilter);
+  const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
   const filterInputId = generate();
 
   const changeHandler = ({ target: { value: filterValue } }) =>
-    dispatch(changeFilter(filterValue));
+    dispatch(contactsActions.changeFilter(filterValue));
 
   return (
     <>

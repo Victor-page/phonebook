@@ -1,28 +1,21 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  deleteContact,
-  fetchContacts,
-} from 'redux/contacts/contacts-operations';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import ContactItem from './ContactItem';
-import {
-  getVisibleContacts,
-  getIsLoadingContacts,
-  getError,
-} from 'redux/contacts/contacts-selectors';
 
 const ContactList = () => {
-  const contacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(contactsSelectors.getVisibleContacts);
   const dispatch = useDispatch();
-  const isLoadingContacts = useSelector(getIsLoadingContacts);
+  const isLoadingContacts = useSelector(contactsSelectors.getIsLoadingContacts);
 
-  const error = useSelector(getError);
+  const error = useSelector(contactsSelectors.getError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  const deleteContactHandler = (id) => dispatch(deleteContact(id));
+  const deleteContactHandler = (id) =>
+    dispatch(contactsOperations.deleteContact(id));
 
   return (
     <>

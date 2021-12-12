@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts-operations';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { generate } from 'shortid';
-import { getContacts } from 'redux/contacts/contacts-selectors';
 import classes from './Form.module.css';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
 
   const nameInputId = generate();
@@ -53,7 +52,7 @@ const Form = () => {
       return alert(concurrence.name + ' is already in contacts.');
     }
 
-    const addAction = addContact(name, number);
+    const addAction = contactsOperations.addContact(name, number);
     dispatch(addAction);
     reset();
   };

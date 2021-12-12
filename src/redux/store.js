@@ -15,17 +15,12 @@ import {
 import counterReducer from './counter/counter-reducer';
 import contactsReducer from './contacts/contacts-reducer';
 
-const myMiddleware = (store) => (next) => (action) => {
-  next(action);
-};
-
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  myMiddleware,
   logger,
 ];
 

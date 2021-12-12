@@ -40,6 +40,12 @@ const error = createReducer(null, {
   [addContactError]: (_, { payload }) => payload,
   [deleteContactError]: (_, { payload }) => payload,
   [fetchContactsError]: (_, { payload }) => payload,
+  [addContactRequest]: () => null,
+  [addContactSuccess]: () => null,
+  [deleteContactRequest]: () => null,
+  [deleteContactSuccess]: () => null,
+  [fetchContactsRequest]: () => null,
+  [fetchContactsSuccess]: () => null,
 });
 
 export default combineReducers({ items, filter, loading, error });
