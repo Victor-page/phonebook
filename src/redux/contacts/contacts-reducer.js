@@ -1,5 +1,8 @@
-import { combineReducers } from 'redux';
-import { createReducer, createSlice } from '@reduxjs/toolkit';
+import {
+  createReducer,
+  combineReducers,
+  // createSlice
+} from '@reduxjs/toolkit';
 import {
   changeFilter,
   // addContactRequest,
@@ -19,19 +22,19 @@ import {
   deleteContact,
 } from './contacts-operations';
 
-const itemsSlice = createSlice({
-  name: 'contacts',
-  initialState: { items: [], filter: '', loading: false, error: null },
-  extraReducers: {
-    [fetchContacts.fullfilled]: (state, action) => ({
-      ...state,
-      items: action.payload,
-    }),
-    [fetchContacts.pending]: (state) => ({ ...state, isLoading: true }),
-    [fetchContacts.rejected]: (state, action) =>
-      (state.error = action.error.message),
-  },
-});
+// const itemsSlice = createSlice({
+//   name: 'contacts',
+//   initialState: { items: [], filter: '', loading: false, error: null },
+//   extraReducers: {
+//     [fetchContacts.fullfilled]: (state, action) => ({
+//       ...state,
+//       items: action.payload,
+//     }),
+//     [fetchContacts.pending]: (state) => ({ ...state, isLoading: true }),
+//     [fetchContacts.rejected]: (state, action) =>
+//       (state.error = action.error.message),
+//   },
+// });
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,
@@ -68,6 +71,6 @@ const error = createReducer(null, {
   [fetchContacts.fulfilled]: () => null,
 });
 
-// export default combineReducers({ items, filter, loading, error });
+export default combineReducers({ items, filter, loading, error });
 
-export default itemsSlice.reducer;
+// export default itemsSlice.reducer;
