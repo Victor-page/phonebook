@@ -3,7 +3,6 @@ import {
   getDefaultMiddleware,
   combineReducers,
 } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
 import {
   FLUSH,
   REHYDRATE,
@@ -15,14 +14,17 @@ import {
 import counterReducer from './counter/counter-reducer';
 import contactsReducer from './contacts/contacts-reducer';
 
-const middleware = [
+let middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
 ];
+
+if (process.env.NODE_ENV === 'development') {
+  middleware = [...middleware, require('redux-logger').createLogger()];
+}
 
 const rootReducer = combineReducers({
   counter: counterReducer,

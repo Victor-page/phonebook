@@ -52,7 +52,7 @@ const Form = () => {
       return alert(concurrence.name + ' is already in contacts.');
     }
 
-    const addAction = contactsOperations.addContact(name, number);
+    const addAction = contactsOperations.addContact({ name, number });
     dispatch(addAction);
     reset();
   };
