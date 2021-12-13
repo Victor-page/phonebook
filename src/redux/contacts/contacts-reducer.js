@@ -1,16 +1,15 @@
 import { createReducer, combineReducers, createSlice } from '@reduxjs/toolkit';
-import {
-  changeFilter,
-  // addContactRequest,
-  // addContactSuccess,
-  // addContactError,
-  // deleteContactRequest,
-  // deleteContactSuccess,
-  // deleteContactError,
-  // fetchContactsRequest,
-  // fetchContactsSuccess,
-  // fetchContactsError,
-} from './contacts-actions';
+import // changeFilter,
+// addContactRequest,
+// addContactSuccess,
+// addContactError,
+// deleteContactRequest,
+// deleteContactSuccess,
+// deleteContactError,
+// fetchContactsRequest,
+// fetchContactsSuccess,
+// fetchContactsError,
+'./contacts-actions';
 
 import {
   fetchContacts,
@@ -18,9 +17,17 @@ import {
   deleteContact,
 } from './contacts-operations';
 
-const itemsSlice = createSlice({
-  name: 'items',
+const contactsSlice = createSlice({
+  name: 'contacts',
   initialState: { items: [], loading: false, filter: '', error: null },
+  reducers: {
+    changeFilter(state, { payload }) {
+      return {
+        ...state,
+        filter: payload,
+      };
+    },
+  },
   extraReducers: {
     [fetchContacts.fulfilled]: (state, { payload }) => ({
       ...state,
@@ -112,4 +119,6 @@ const itemsSlice = createSlice({
 
 // export default combineReducers({ items, filter, loading, error });
 
-export default itemsSlice.reducer;
+export const contactsActions = contactsSlice.actions;
+
+export default contactsSlice.reducer;
