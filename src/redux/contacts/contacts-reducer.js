@@ -4,16 +4,16 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import // changeFilter,
-// addContactRequest,
-// addContactSuccess,
-// addContactError,
-// deleteContactRequest,
-// deleteContactSuccess,
-// deleteContactError,
-// fetchContactsRequest,
-// fetchContactsSuccess,
-// fetchContactsError,
-'./contacts-actions';
+  // addContactRequest,
+  // addContactSuccess,
+  // addContactError,
+  // deleteContactRequest,
+  // deleteContactSuccess,
+  // deleteContactError,
+  // fetchContactsRequest,
+  // fetchContactsSuccess,
+  // fetchContactsError,
+  './contacts-actions';
 
 import {
   fetchContacts,
@@ -28,8 +28,6 @@ const contactsSlice = createSlice({
     changeFilter(state, { payload }) {
       state.filter = payload;
     },
-  },
-  extraReducers: {
     [fetchContacts.fulfilled]: (state, { payload }) => ({
       ...state,
       items: payload,
