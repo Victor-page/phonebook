@@ -1,8 +1,6 @@
 import { generate } from 'shortid';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsSelectors } from 'redux/contacts';
-import { contactsActions } from 'redux/contacts/contacts-reducer';
-console.log('contactsActions', contactsActions);
+import { contactsSelectors, contactsActions } from 'redux/contacts';
 
 const Filter = () => {
   const value = useSelector(contactsSelectors.getFilter);
