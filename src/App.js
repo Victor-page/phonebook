@@ -2,6 +2,7 @@ import Form from 'components/Form';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
 // import Counter from 'components/Counter';
+// import Pokemon from 'components/Pokemon';
 
 const App = () => (
   <div>
@@ -14,6 +15,8 @@ const App = () => (
     <ContactList />
 
     {/* <Counter /> */}
+
+    {/* <Pokemon /> */}
   </div>
 );
 

@@ -9,6 +9,7 @@ import {
 } from 'redux-persist';
 import counterReducer from './counter/counter-reducer';
 import contactsReducer from './contacts/contacts-reducer';
+import { pokemonApi } from './pokemon';
 
 let middleware = [
   ...getDefaultMiddleware({
@@ -16,19 +17,19 @@ let middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  pokemonApi.middleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
   middleware = [...middleware, require('redux-logger').createLogger()];
 }
 
-const rootReducer = {
-  counter: counterReducer,
-  contacts: contactsReducer,
-};
-
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    counter: counterReducer,
+    contacts: contactsReducer,
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
