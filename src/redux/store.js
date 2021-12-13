@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  getDefaultMiddleware,
-  combineReducers,
-} from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   FLUSH,
   REHYDRATE,
@@ -26,10 +22,10 @@ if (process.env.NODE_ENV === 'development') {
   middleware = [...middleware, require('redux-logger').createLogger()];
 }
 
-const rootReducer = combineReducers({
+const rootReducer = {
   counter: counterReducer,
   contacts: contactsReducer,
-});
+};
 
 const store = configureStore({
   reducer: rootReducer,
