@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import ContactItem from './ContactItem';
@@ -11,7 +11,11 @@ const ContactList = () => {
 
   // const error = useSelector(contactsSelectors.getError);
 
-  const { data: contacts, isFetching, error } = useFetchContactsQuery();
+  const {
+    data: contacts,
+    isLoading: isLoadingForTheFirstTime,
+    error,
+  } = useFetchContactsQuery();
 
   // useEffect(() => {
   //   dispatch(contactsOperations.fetchContacts());
@@ -22,8 +26,8 @@ const ContactList = () => {
 
   return (
     <>
-      {isFetching && <h2>Loading...</h2>}
-      {error && !isFetching && <h2>{error}</h2>}
+      {isLoadingForTheFirstTime && <h2>Loading...</h2>}
+      {error && !isLoadingForTheFirstTime && <h2>{error}</h2>}
       {contacts && (
         <ul>
           {contacts.map(({ id, name, number }) => (
@@ -31,7 +35,8 @@ const ContactList = () => {
               key={id}
               name={name}
               number={number}
-              // onDeleteContact={() => deleteContactHandler(id)}
+              id={id}
+              // onDeleteContact={() => deleteContact(id)}
             />
           ))}
         </ul>
