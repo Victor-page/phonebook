@@ -20,9 +20,9 @@ let middleware = [
   contactsApi.middleware,
 ];
 
-if (process.env.NODE_ENV === 'development') {
-  middleware = [...middleware, require('redux-logger').createLogger()];
-}
+// if (process.env.NODE_ENV === 'development') {
+//   middleware = [...middleware, require('redux-logger').createLogger()];
+// }
 
 const store = configureStore({
   reducer: {
