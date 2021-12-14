@@ -1,6 +1,12 @@
 // import { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import {
+  useSelector,
+  // useDispatch
+} from 'react-redux';
+import {
+  //  contactsOperations,
+  contactsSelectors,
+} from 'redux/contacts';
 import ContactItem from './ContactItem';
 import { useFetchContactsQuery } from 'redux/contacts/contacts-slice';
 
@@ -11,11 +17,9 @@ const ContactList = () => {
 
   // const error = useSelector(contactsSelectors.getError);
 
-  const {
-    data: contacts,
-    isLoading: isLoadingForTheFirstTime,
-    error,
-  } = useFetchContactsQuery();
+  const { isLoading: isLoadingForTheFirstTime, error } =
+    useFetchContactsQuery();
+  const visibleContacts = useSelector(contactsSelectors.getVisibleContacts);
 
   // useEffect(() => {
   //   dispatch(contactsOperations.fetchContacts());
@@ -28,9 +32,9 @@ const ContactList = () => {
     <>
       {isLoadingForTheFirstTime && <h2>Loading...</h2>}
       {error && !isLoadingForTheFirstTime && <h2>{error}</h2>}
-      {contacts && (
+      {visibleContacts && (
         <ul>
-          {contacts.map(({ id, name, number }) => (
+          {visibleContacts.map(({ id, name, number }) => (
             <ContactItem
               key={id}
               name={name}

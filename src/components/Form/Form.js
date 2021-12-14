@@ -1,22 +1,24 @@
 import { useState } from 'react';
-import {
-  useSelector,
-  //  useDispatch
-} from 'react-redux';
-import {
-  // contactsOperations,
-  contactsSelectors,
-} from 'redux/contacts';
+// import {
+//   // useSelector,
+//   //  useDispatch
+// } from 'react-redux';
+// import {
+//   // contactsOperations,
+//   // contactsSelectors,
+// } from 'redux/contacts';
 import { useAddContactMutation } from 'redux/contacts/contacts-slice';
 import { generate } from 'shortid';
 import classes from './Form.module.css';
+import { useFetchContactsQuery } from 'redux/contacts/contacts-slice';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(contactsSelectors.getContacts);
+  // const contacts = useSelector(contactsSelectors.getContacts);
   // const dispatch = useDispatch();
   const [addContact, { isLoading }] = useAddContactMutation();
+  const { data: contacts } = useFetchContactsQuery();
 
   const nameInputId = generate();
   const numberInputId = generate();
