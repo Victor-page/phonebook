@@ -12,6 +12,6 @@ export const getFilter = (state) => state.contacts.filter;
 //   );
 // };
 
-export const getIsLoadingContacts = (state) => state.contacts.loading;
+// export const getIsLoadingContacts = (state) => state.contacts.loading;
 
-export const getError = (state) => state.contacts.error;
+// export const getError = (state) => state.contacts.error;

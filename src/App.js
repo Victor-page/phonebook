@@ -1,7 +1,7 @@
 import Form from 'components/Form';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
-// import Counter from 'components/Counter';
+import Counter from 'components/Counter';
 
 const App = () => (
   <div>
@@ -13,7 +13,7 @@ const App = () => (
 
     <ContactList />
 
-    {/* <Counter /> */}
+    <Counter />
   </div>
 );
 
