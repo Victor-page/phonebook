@@ -18,9 +18,9 @@ let middleware = [
   }),
 ];
 
-if (process.env.NODE_ENV === 'development') {
-  middleware = [...middleware, require('redux-logger').createLogger()];
-}
+// if (process.env.NODE_ENV === 'development') {
+//   middleware = [...middleware, require('redux-logger').createLogger()];
+// }
 
 const rootReducer = {
   counter: counterReducer,
