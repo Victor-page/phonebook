@@ -1,21 +1,22 @@
 import { Switch, Route } from 'react-router-dom';
-import Form from 'components/Form';
-import Filter from 'components/Filter';
-import ContactList from 'components/ContactList';
-// import Counter from 'components/Counter';
 import Container from 'components/Container';
+import HomeView from 'views/HomeView';
+import LoginView from 'views/LoginView';
+import RegisterView from 'views/RegisterView';
+import ContactsView from 'views/ContactsView';
+import AppBar from 'components/AppBar';
+
 
 const App = () => (
   <Container>
-    <h1>Phonebook</h1>
-    <Form />
+    <AppBar />
 
-    <h2>Contacts</h2>
-    <Filter />
-
-    <ContactList />
-
-    {/* <Counter /> */}
+    <Switch>
+      <Route exact path="/" component={HomeView}></Route>
+      <Route path="/register" component={RegisterView}></Route>
+      <Route path="/login" component={LoginView}></Route>
+      <Route path="/contacts" component={ContactsView}></Route>
+    </Switch>
   </Container>
 );
 
