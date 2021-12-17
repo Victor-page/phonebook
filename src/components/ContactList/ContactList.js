@@ -44,8 +44,8 @@ const ContactList = () => {
   return (
     <>
       {isLoadingForTheFirstTime && <h2>Loading...</h2>}
-      {error && !isLoadingForTheFirstTime && <h2>{error}</h2>}
-      {visibleContacts && (
+      {error && !isLoadingForTheFirstTime && <h2>{error?.data?.message}</h2>}
+      {visibleContacts.length !== 0 && (
         <ul>
           {visibleContacts.map(({ id, name, number }) => (
             <ContactItem

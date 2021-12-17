@@ -30,22 +30,28 @@ const contactsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchContacts.fulfilled]: (state, { payload }) => ({
-      ...state,
-      items: payload,
-      loading: false,
-      error: null,
-    }),
+    [fetchContacts.fulfilled]: (state, { payload }) => {
+      debugger;
+      return {
+        ...state,
+        items: payload,
+        loading: false,
+        error: null,
+      };
+    },
     [fetchContacts.pending]: (state) => ({
       ...state,
       loading: true,
       error: null,
     }),
-    [fetchContacts.rejected]: (state, action) => ({
-      ...state,
-      loading: false,
-      error: action.error.message,
-    }),
+    [fetchContacts.rejected]: (state, action) => {
+      debugger;
+      return {
+        ...state,
+        loading: false,
+        error: action.error.message,
+      };
+    },
 
     [addContact.fulfilled]: (state, { payload }) => ({
       ...state,

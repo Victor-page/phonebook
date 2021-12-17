@@ -58,6 +58,17 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    [authOperations.relogIn.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isLoading = false;
+      state.error = null;
+    },
+    [authOperations.relogIn.pending](state, action) {},
+    [authOperations.relogIn.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.error.message;
+    },
   },
 });
 

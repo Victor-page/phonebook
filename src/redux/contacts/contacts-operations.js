@@ -1,4 +1,4 @@
-import { contactsAxios } from '../axios';
+import { connectionsAxios } from '../axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import {
 //   addContactRequest,
@@ -19,7 +19,7 @@ const contactsEndpoint = '/contacts';
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async () => {
-    const { data } = await contactsAxios.get(contactsEndpoint);
+    const { data } = await connectionsAxios.get(contactsEndpoint);
     return data;
   }
 );
@@ -39,7 +39,7 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact) => {
-    const { data } = await contactsAxios.post(contactsEndpoint, contact);
+    const { data } = await connectionsAxios.post(contactsEndpoint, contact);
     return data;
   }
 );
@@ -61,7 +61,7 @@ export const addContact = createAsyncThunk(
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id) => {
-    const { data } = await contactsAxios.delete(`${contactsEndpoint}/${id}`);
+    const { data } = await connectionsAxios.delete(`${contactsEndpoint}/${id}`);
     return data;
   }
 );
