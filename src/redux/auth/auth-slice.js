@@ -7,6 +7,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   error: null,
+  isBeingReloggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -63,11 +64,15 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
       state.error = null;
+      state.isBeingReloggedIn = false;
     },
-    [authOperations.relogIn.pending](state, action) {},
+    [authOperations.relogIn.pending](state, action) {
+      state.isBeingReloggedIn = true;
+    },
     [authOperations.relogIn.rejected](state, action) {
       state.isLoading = false;
       state.error = action.error.message;
+      state.isBeingReloggedIn = false;
     },
   },
 });

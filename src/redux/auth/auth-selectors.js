@@ -10,6 +10,13 @@ const getToken = (state) => {
   return state.auth.token;
 };
 
-const authSelectors = { getIsLoggedIn, getUserName, getToken };
+const getIsBeingReloggedIn = (state) => state.auth.isBeingReloggedIn;
+
+const authSelectors = {
+  getIsLoggedIn,
+  getUserName,
+  getToken,
+  getIsBeingReloggedIn,
+};
 
 export default authSelectors;
