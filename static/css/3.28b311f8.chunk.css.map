@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Form/Form.module.css","webpack://src/components/ContactList/ContactItem/ContactItem.module.css"],"names":[],"mappings":"AAAA,kBACE,kBACF,CCFA,8CACE,kBACF","file":"3.28b311f8.chunk.css","sourcesContent":[".form {\r\n  margin-bottom: 1rem;\r\n}\r\n",".contact span:nth-child(2) {\r\n  margin-right: 0.5rem;\r\n}\r\n"]}
